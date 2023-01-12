@@ -1,0 +1,20 @@
+.category_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.category_label {
+  margin-left: .7rem;
+  font-weight: 600;
+}
+
+.select {
+  height: 2.6rem;
+  background: #fff;
+  border: 1.7px solid var(--moderate-orange);
+  font-size: .9rem;
+  border-radius: 50px;
+  width: 16rem;
+  padding: 0 .3rem;
+  cursor: pointer;
+}

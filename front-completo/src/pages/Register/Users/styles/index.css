@@ -1,0 +1,41 @@
+.register-container {
+  position: relative;
+}
+
+#form-header-register {
+  margin-bottom: 0;
+}
+
+.container-body-register {
+  padding-top: 2rem;
+}
+
+.register-screen {
+  height: 35rem;
+}
+
+.isButtonDisabled:disabled {
+  background: var(--very-soft-orange);
+  transform: none;
+  cursor: not-allowed;
+}
+
+.arrow-left {
+  position: absolute;
+  top: 108px;
+  left: 0;
+
+  margin-left: 1.1rem;
+  cursor: pointer;
+  transition: all ease-out .2s;
+}
+
+.arrow-left:hover {
+  transform: scale(1.1);
+}
+
+@media(max-width: 950px) {
+  .arrow-left {
+    z-index: 1;
+  }
+}

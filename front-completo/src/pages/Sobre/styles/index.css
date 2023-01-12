@@ -1,0 +1,78 @@
+.quem-somos {
+    padding: 5rem;
+    text-align: center;
+  }
+  
+  .quem-somos__descricao {
+    color: #595959;
+    font-size: 1.75rem;
+    font-weight: 100;
+  }
+  
+  .quem-somos__titulo {
+    color: #8d4925 ;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3.1875rem;
+    margin-bottom: 1rem;
+  }
+  
+  .pessoas {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 3rem;
+  }
+  
+  .pessoa {
+    display: flex;
+    flex-direction: column;
+  }
+  .pessoa__nome {
+    color: #8d4925;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+    margin: 1rem 0;
+  }
+  
+  .pessoa__funcao {
+    color: #595959;
+    font-size: 1.25rem;
+    text-transform: lowercase;
+  }
+  
+  .pessoa__imagem {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100%;
+    height: 300px;
+    margin: 0 auto;
+    width: 300px;
+  }
+  
+  .pessoa__imagem--elionai {
+    background-image: url('../../../images/elioenai.jpg');
+  }
+  
+  .pessoa__imagem--karolynne {
+    background-image: url('../../../images/karol.jpg');
+  }
+  
+  .pessoa__imagem--lucas {
+    background-image: url('../../../images/lucas.jpg');
+  }
+  
+  .pessoa__imagem--marcos {
+    background-image: url('../../../images/marcos.jpg');
+  }
+  
+  @media screen and (min-width: 0) {
+    .pessoas {
+        flex-direction: column;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .pessoas {
+        flex-direction: row;
+    }
+  }
+  

@@ -1,0 +1,129 @@
+.planos {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  .planos__titulo {
+    color: #8d4925;
+    font-weight: 700;
+    font-size: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  
+  .planos__cartoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cartao {
+    display: flex;
+    flex-direction: column;
+    background-color: #f0ecec;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px 2px #00000010;
+  }
+  
+  .cartao__titulo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: .75rem 0;
+    margin-bottom: .5rem;
+    border-bottom: 1px solid black;
+  }
+  
+  .cartao__conteudo {
+    padding: 0 15%;
+  }
+  
+  .cartao__preco {
+    font-weight: 700;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 1.10rem;
+    margin-bottom: 1.10rem;
+  }
+  
+  .cartao__texto {
+    color: darkgray;
+    line-height: 28px;
+  }
+  
+  .cartao__botao {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 200px;
+    width: 100%;
+    align-self: center;
+    padding: .75rem 2rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  .cartao__botao:hover{
+    color: darkgray;
+  }
+  
+  .cartao--start {
+    color: #8d4925;
+  }
+  
+  .cartao--ultra {
+    color: black;
+  }
+  
+  .cartao--mega {
+    color: #8d4925;
+  }
+  
+  .cartao__botao--start {
+    border-color: black;
+  }
+  
+  .cartao__botao--ultra {
+    border-color: #8d4925;
+  }
+  
+  .cartao__botao--mega {
+    border-color: black;
+  }
+  .botao{
+    background-color: #8d4925;
+    height: 10px;
+  }
+
+
+  @media screen and (min-width: 1024px) {
+    
+    .planos__cartoes {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+  }
+  
+  .cartao {
+      max-width: 300px;
+  }
+  }
+  
+  
+  @media screen and (min-width: 768px) {
+    .cartao {
+        max-width: 400px;
+    }
+  }
+
+  @media only screen and (max-width: 600px){
+   .cartao__botao{
+    height: 20px;
+
+   }
+  }
+  
+  /* fim da responsividade*/

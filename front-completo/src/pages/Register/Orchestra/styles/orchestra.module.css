@@ -1,0 +1,51 @@
+.create_orchestra_title {
+  font-size: 2.7rem;
+  color: var(--moderate-orange);
+}
+
+.input_code::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.form_register {
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+}
+
+.form_container_orchestra {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  justify-content: center;
+}
+
+.select_control {
+  display: flex;
+  flex-direction: column;
+}
+
+.select_btn {
+  height: 2.6rem;
+  font-size: .9rem;
+  background: #fff;
+  border: 1.7px solid var(--moderate-orange);
+  cursor: pointer;
+  padding: 0 .3rem;
+  width: 16rem;
+  font-weight: 600;
+  border-radius: 50px;
+  color: #333;
+}
+
+.label_maestro {
+  font-weight: 600;
+  margin-bottom: .7rem;
+}
+
+@media(max-width: 720px) {
+  .create_orchestra_title {
+    font-size: 2.2rem;
+  }
+}

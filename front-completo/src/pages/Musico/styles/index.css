@@ -1,0 +1,63 @@
+.usuario{
+    background-image: url("https://tm.ibxk.com.br/2020/02/11/11232649455073.jpg?ims=1120x420");
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0px !important;
+  }
+  
+  .usuario h1{
+    margin: 20px 0;
+    font-size: 30px;
+    line-height: 1.5;
+    color: white;
+  }
+  .intro_user img{
+  filter: opacity(2.7);
+  margin-top: 40px;
+  margin-right: 80px;
+  margin-bottom: -20px;
+  height: 200px;
+  }
+
+  
+  .intro_user .btn{
+    border: 1px solid white;
+    padding: 6px 26px;
+    font-size: 16px;
+  }
+
+  .pesquisa{
+      margin-top: 20px;
+      margin-bottom: 20px;
+  }
+
+  .btn-color{
+    background-color: #8d4925;
+    color: white;
+  }
+  
+
+
+  @media only screen and (max-width: 1000px){
+    .intro_user{
+        padding-top: 130px;
+    }
+  }
+  
+  @media only screen and (max-width: 600px){
+    .usuario h1{
+        font-size: 16px;
+        line-height: 1.7;
+  }
+  .intro_user{
+      padding-top: 90px;
+  }
+  
+  .intro_user img{
+    margin-top: -40px;
+    margin-right: 80px;
+    margin-bottom: -20px;
+    height: 200px;
+  }
+  }

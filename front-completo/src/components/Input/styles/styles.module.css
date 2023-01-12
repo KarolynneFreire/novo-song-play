@@ -1,0 +1,48 @@
+.container_float {
+  display: flex;
+
+  position: relative;
+}
+
+.container_password_float {
+  left: 0;
+}
+
+.container_password {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.input_password {
+  border: none;
+  background: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  padding: 1.2rem 1rem;
+  font-size: .9rem;
+}
+
+.input_login, .container_password {
+  height: 2.6rem;
+  background: #fff;
+  border: 1.7px solid var(--moderate-orange);
+  font-size: .9rem;
+  border-radius: 50px;
+  width: 16rem;
+}
+
+.input_login::placeholder, .input_password::placeholder {
+  font-weight: 700;
+}
+
+.button_eyes {
+  background: none;
+  padding: .6rem;
+  position: absolute;
+  right: 0;
+  top: -3px;
+}

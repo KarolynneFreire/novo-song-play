@@ -1,0 +1,43 @@
+:root { 
+  --dark-orange-brown-tone: #8d4925;
+  --moderate-orange: #c57d56; 
+  --very-light-orange: #ffb48a;
+  --very-soft-orange: #e8c39e;
+  --light-grayish-orange: #f5e1ce;
+}
+
+label {
+  font-weight: 600;
+  margin-left: .7rem;
+  display: flex;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  padding: 5px 10px;
+}
+
+input, button {
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+a {
+  text-decoration: none;
+}
