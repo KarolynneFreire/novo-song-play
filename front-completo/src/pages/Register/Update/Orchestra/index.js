@@ -2,19 +2,19 @@ import classes from './styles/orchestra.module.css'
 
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { Image } from "../../../components/Image";
-import { Input } from "../../../components/Input";
-import { Title } from "../../../components/Title";
-import trebleClef from '../../../images/music-notes.png'
-import { useContextApi } from '../../../context/hooks/useContextApi'
-import { Button } from "../../../components/Button";
-import { api } from '../../../services/api'
+import { Image } from "../../../../components/Image";
+import { Input } from "../../../../components/Input";
+import { Title } from "../../../../components/Title";
+import trebleClef from '../../../../images/music-notes.png'
+import { useContextApi } from '../../../../context/hooks/useContextApi'
+import { Button } from "../../../../components/Button";
+import { api } from '../../../../services/api'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-export function Orchestra() {
+export function OrchestraUpdate() {
 
   useEffect(() => {
     document.title = 'Cadastre uma orquestra'
@@ -174,7 +174,7 @@ export function Orchestra() {
               className='button-login isButtonDisabled'
               disabled={ isDisabled }
             >
-              Confirmar
+              Salvar
             </Button>
             
           </form>

@@ -1,12 +1,12 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { Button } from "../../../components/Button";
-import { Image } from "../../../components/Image";
-import { Title } from "../../../components/Title";
-import trebleClef from '../../../images/music-notes.png'
+import { Button } from "../../../../components/Button";
+import { Image } from "../../../../components/Image";
+import { Title } from "../../../../components/Title";
+import trebleClef from '../../../../images/music-notes.png'
 import { useEffect, useState } from "react";
-import { Input } from '../../../components/Input'
-import { api } from "../../../services/api";
+import { Input } from '../../../../components/Input'
+import { api } from "../../../../services/api";
 import classes from './styles/styles.module.css'
 import { toast } from 'react-toastify'
 import { Worker } from '@react-pdf-viewer/core'
@@ -15,7 +15,7 @@ import { Viewer } from '@react-pdf-viewer/core'
 // import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import '@react-pdf-viewer/core/lib/styles/index.css'
 
-export function SheetMusic() {
+export function SheetMusicUpdate() {
 
   // const defaultLayoutPluginInstance = defaultLayoutPlugin();
   

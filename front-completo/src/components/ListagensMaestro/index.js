@@ -1,10 +1,22 @@
 import React, {useEffect, useState} from "react";
-import axios from 'axios';
 import { api } from '../../services/api';
-
+import { useContextApi } from "../../context/hooks/useContextApi";
+import { useNavigate } from "react-router-dom";
 
 
 const ListagensMaestro = () => {
+
+  const { 
+    user,
+    setCategoria,
+    setNome,
+    setCpf,
+    setEmail
+    // userData,
+    // setUserData
+  } = useContextApi()
+
+  const navigate = useNavigate()
   
   const [usuarios, SetUsuarios] = useState([]);
   const [orquestras, SetOrquestras] = useState([]);
@@ -13,59 +25,154 @@ const ListagensMaestro = () => {
   const [pesquisar, setPesquisar] = useState("");
   
  
- 
   useEffect(()=>{
-   buscarUsuarios();
+    buscarUsuarios();
   },[]);
 
-
-  function buscarUsuarios(){
-    api.get("/listarUsuarios").then(result=>{
-      SetUsuarios(result.data);
-    });
-  }
-
-function buscarOrquestras(){
-    api.get("/listarOrquestras").then(result=>{
-      SetOrquestras(result.data);
-    });
-  }
-
-  function buscarPartituras(){
-    api.get("/listarPartitura").then(result=>{
-      SetPartituras(result.data);
-    });
-  }
-
-  function buscarPendentes(){
-    api.get("/listarUsuariosPendentes").then(result=>{
-      SetUsuarios(result.data);
-    });
-  }
-
-  function excluirUsuario (id){
-    api.post("/deletarUsuario/"+id).then(result=>{
-    setAtualizar(result);
-  });
+  async function buscarUsuarios() {
+    try {
+      const result = await api.get('/listarUsuarios')
+      SetUsuarios(result.data)
+      
+      // return result.data
+    } catch (error) {
+      console.error(error.name)
+      console.info(error.message)
     }
+  }
+
+  async function buscarOrquestras() {
+    try {
+      const result = await api.get('/listarOrquestras')
+      SetOrquestras(result.data)
+      
+      // return result.data
+    } catch (error) {
+      console.error(error.name)
+      console.info(error.message)
+    }
+  }
+
+  async function buscarPartituras() {
+    try {
+      const result = await api.get('/listarPartitura')
+      SetPartituras(result.data)
+      
+      // return result.data
+    } catch (error) {
+      console.error(error.name)
+      console.info(error.message)
+    }
+  }
+
+  async function buscarPendentes() {
+    try {
+      const result = await api.get('/listarUsuariosPendentes')
+      SetUsuarios(result.data)
+      
+      // return result.data
+    } catch (error) {
+      console.error(error.name)
+      console.info(error.message)
+    }
+  }
+
+  async function excluirUsuario(id) {
+    try {
+      const result = await api.post("/deletarUsuario/"+id)
+      setAtualizar(result.data)
+      
+      // return result.data
+    } catch (error) {
+      console.error(error.name)
+      console.info(error.message)
+    }
+  }
+
+  async function excluirOrquestra(codigo) {
+    try {
+      const result = await api.post("/deletarUsuario/"+codigo)
+      setAtualizar(result.data)
+      
+      // return result.data
+    } catch (error) {
+      console.error(error.name)
+      console.info(error.message)
+    }
+  }
+
+  async function excluirPartituras(codigo) {
+    try {
+      const result = await api.post("/deletarUsuario/"+codigo)
+      setAtualizar(result.data)
+      
+      // return result.data
+    } catch (error) {
+      console.error(error.name)
+      console.info(error.message)
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+
+    }
+  }, [])
+
+  // function buscarUsuarios(){
+  //   api.get("/listarUsuarios").then(result=>{
+  //     SetUsuarios(result.data);
+  //   });
+  // }
+
+  // function buscarOrquestras(){
+  //   api.get("/listarOrquestras").then(result=>{
+  //     SetOrquestras(result.data);
+  //   });
+  // }
+
+  // function buscarPartituras(){
+  //   api.get("/listarPartitura").then(result=>{
+  //     SetPartituras(result.data);
+  //   });
+  // }
+
+  // function buscarPendentes(){
+  //   api.get("/listarUsuariosPendentes").then(result=>{
+  //     SetUsuarios(result.data);
+  //   });
+  // }
+
+  // function excluirUsuario (id){
+  //   api.post("/deletarUsuario/"+id).then(result=>{
+  //     setAtualizar(result);
+  //   });
+  // }
 
 
-    function excluirOrquestra (codigo){
-      api.post("/deleteOrquestra/"+codigo).then(result=>{
-      setAtualizar(result);
-    });
-      }
+  // function excluirOrquestra (codigo){
+  //   api.post("/deleteOrquestra/"+codigo).then(result=>{
+  //     setAtualizar(result);
+  //  });
+  // }
 
-      function excluirPartituras (codigo){
-        api.post("/deletarPartitura/"+codigo).then(result=>{
-        setAtualizar(result);
-      });
-        }
+  // function excluirPartituras (codigo){
+  //   api.post("/deletarPartitura/"+codigo).then(result=>{
+  //     setAtualizar(result);
+  //   });
+  // }
 
-       
+  function editUsers(id) {
+    navigate(`/edit/user/${id}`)
+  }
 
-       
+  function editOrchestra(id) {
+    navigate(`/edit/orchestra/${id}`)
+  }
 
+  function editSheetMusic(id) {
+    navigate(`/edit/sheetMusic/${id}`)
+  }    
 
   return (
 
@@ -92,29 +199,33 @@ function buscarOrquestras(){
     </tbody>
   <tbody>
     {
-
-    usuarios.filter(val=>{
-      if (pesquisar === ''){
-        return val;   
-      } else if (
-        val.nome.toLowerCase().includes(pesquisar.toLowerCase()) ||
-        val.email.toLowerCase().includes(pesquisar.toLowerCase())
-      )  {
-        return val
-      }
-    }).map( serv=>(
-      <React.Fragment key={serv.codigo}>
-    <tr>
-      <td>{serv.nome}</td>
-      <td>{serv.categoria}</td>
-      <td >{serv.email}</td>
-      <td>
-      <button onClick={()=>SetUsuarios(serv)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp;
-      <button onClick={()=>excluirUsuario(serv.codigo)} type="button" className="btn btn-color">Excluir</button>&nbsp;&nbsp;
-      </td>
-    </tr>
-    </React.Fragment>
-    ))
+      usuarios.filter(val=>{
+        if (pesquisar === ''){
+          return val;   
+        } else if (
+          val.nome.toLowerCase().includes(pesquisar.toLowerCase()) ||
+          val.email.toLowerCase().includes(pesquisar.toLowerCase())
+        )  {
+          return val
+        }
+      }).map( serv=>(
+        <React.Fragment key={serv.codigo}>
+      <tr>
+        <td>{serv.nome}</td>
+        <td>{serv.categoria}</td>
+        <td >{serv.email}</td>
+        <td>
+          <button onClick={()=> editUsers(serv.codigo)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp;
+          {/* <button onClick={()=>excluirUsuario(serv.codigo)} type="button" className="btn btn-color">Excluir</button>&nbsp;&nbsp; */}
+          { user.nome !== serv.nome ? (
+            <button onClick={()=>excluirUsuario(serv.codigo)} type="button" className="btn btn-color">Excluir</button>
+          ) : (
+            null
+          )}
+        </td>
+      </tr>
+      </React.Fragment>
+      ))
     }
 
   </tbody>
@@ -151,7 +262,7 @@ function buscarOrquestras(){
       <td>{orq.nome}</td>
       <td>{orq.codigoMaestro.nome}</td>
       <td>
-      <button onClick={()=>SetOrquestras(orq)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp;
+      <button onClick={()=> editOrchestra(orq.codigo)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp;
       <button onClick={()=>excluirOrquestra(orq.codigo)} type="button" className="btn btn-color">Excluir</button>&nbsp;&nbsp;
       </td>
     </tr>
@@ -182,7 +293,7 @@ function buscarOrquestras(){
       <td>{part.nome}</td>
       <td>{part.compositor}</td>
       <td>
-      <button onClick={()=>SetPartituras(part)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp;
+      <button onClick={()=> editSheetMusic(part.codigo)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp;
       <button onClick={()=>excluirPartituras(part.codigo)} type="button" className="btn btn-color">Excluir</button>&nbsp;&nbsp;
 
      

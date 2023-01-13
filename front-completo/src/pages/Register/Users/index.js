@@ -188,7 +188,7 @@ export function Users() {
 
       const { status } = error.request
       
-      // setIsLoading(false)
+      setIsLoading(false)
       
       if(status === 400) {
         return toast.error('Informe um CPF válido.')

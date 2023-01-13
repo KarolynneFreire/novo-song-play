@@ -21,11 +21,11 @@ export const ContextProvider = ({ children }) => {
   const [isUserLogged, setIsUserLogged] = useState(false)
   const [codigoMaestro, setCodigoMaestro] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [userData, setUserData] = useState([])
 
   const navigate = useNavigate()
 
   const handleLogoutUser = async () => {
-
     
     try{
       const response = await api.post('/logout')
@@ -166,7 +166,9 @@ export const ContextProvider = ({ children }) => {
       codigoMaestro, 
       setCodigoMaestro,
       isLoading, 
-      setIsLoading
+      setIsLoading,
+      userData, 
+      setUserData
     }}>
       { children }
     </Context.Provider>

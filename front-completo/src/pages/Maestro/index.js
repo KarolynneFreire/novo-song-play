@@ -3,11 +3,13 @@ import CapaUsuario from '../../components/CapaUsuario';
 import FuncionalidadesMusc from '../../components/FuncionalidadesMusc';
 import ListagensMaestro from '../../components/ListagensMaestro';
 import '../Maestro/styles/index.css'
-import { api } from '../../services/api';
 
 
 export const Maestro = () => {
 
+  useEffect(() => {
+    document.title = 'Maestro'
+  }, [])
   
     return (
       <div>
