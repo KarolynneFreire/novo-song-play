@@ -10,6 +10,8 @@ const ListagensMaestro = () => {
   const [orquestras, SetOrquestras] = useState([]);
   const [partituras, SetPartituras] = useState([]);
   const [atualizar, setAtualizar] = useState([]);
+
+  
  
  
   useEffect(()=>{
@@ -60,18 +62,22 @@ function buscarOrquestras(){
       });
         }
 
+       
+
+       
+
 
   return (
 
-    
     <div className="container listas">
     <button onClick={buscarUsuarios()} type="button" data-bs-toggle="collapse" data-bs-target="#usuario" className="btn btn-color">Listar Todos Usuarios</button>&nbsp;&nbsp;
     <button onClick={buscarPartituras()}  data-bs-toggle="collapse" data-bs-target="#partitura"type="button" className="btn btn-color">Listar Todas Partituras</button>&nbsp;&nbsp;
     <button onClick={buscarOrquestras()} type="button" data-bs-toggle="collapse" data-bs-target="#orquestra" className="btn btn-color">Listar Todas Orquestras</button>&nbsp;&nbsp;
     {/* <button onClick={buscarPendentes()}type="button" data-bs-toggle="collapse" data-bs-target="#usuario" className="btn btn-secondary">Usuarios Pendentes</button>&nbsp;&nbsp; */}
-   
+
     <table id ="usuario" className="table collapse">
-  <thead>
+  <tbody>
+    
     <h3 className="titulo-list">Lista de todos os usuários</h3>
     <tr>
       <th scope="col">Nome</th>
@@ -79,11 +85,11 @@ function buscarOrquestras(){
       <th scope="col">Email</th>
       <th scope="col">Opções</th>
     </tr>
-  </thead>
+    </tbody>
   <tbody>
     {
 
-    usuarios.map(serv=>(
+    usuarios.map( serv=>(
       <React.Fragment key={serv.codigo}>
     <tr>
       <td>{serv.nome}</td>
@@ -100,17 +106,16 @@ function buscarOrquestras(){
 
   </tbody>
 </table>
-
 <table id ="orquestra" className="table collapse">
-  <thead>
+  <tbody>
   <h3 className="titulo-list">Lista de todas as orquestras</h3>
-
     <tr>
       <th scope="col">Nome da Orquestra</th>
       <th scope="col">Nome do Maestro</th>
       <th scope="col">Opções</th>
     </tr>
-  </thead>
+    </tbody>
+
   <tbody>
     {
 
@@ -131,15 +136,17 @@ function buscarOrquestras(){
   </tbody>
 </table>
 
+
 <table id ="partitura" className="table collapse">
-  <thead>
+  <tbody>
     <h3 className="titulo-list">Lista de todas as partituras</h3>
     <tr>
       <th scope="col">Nome</th>
       <th scope="col">Compositor</th>
       <th scope="col">Opções</th>
     </tr>
-  </thead>
+    </tbody>
+
   <tbody>
     {
 
@@ -163,7 +170,9 @@ function buscarOrquestras(){
 </table>
 
 
+    
     </div>
+
 
   );
   };

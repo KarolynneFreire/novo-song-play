@@ -15,19 +15,11 @@ const ListagemMusico = () => {
    buscarPartituras();
   },[]);
 
-
- 
-
-
   function buscarPartituras(){
     api.get("/listarPartituras").then(result=>{
       SetPartituras(result.data);
     });
   }
-
-  
-
-
 
   return (
 

@@ -18,7 +18,7 @@ const QuemSomos = () => {
           Conte com uma equipe especializada e exclusiva pra melhorar a sua experiência.
         </p>
         <p className="sobre__texto">
-          Estamos em algumas plataformas
+          Estamos em algumas plataformas:
         </p>
               
         <section className="mb-4">
