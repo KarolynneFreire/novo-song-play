@@ -10,7 +10,7 @@ const ListagensMaestro = () => {
   const [orquestras, SetOrquestras] = useState([]);
   const [partituras, SetPartituras] = useState([]);
   const [atualizar, setAtualizar] = useState([]);
-
+  const [pesquisar, setPesquisar] = useState("");
   
  
  
@@ -75,9 +75,13 @@ function buscarOrquestras(){
     <button onClick={buscarOrquestras()} type="button" data-bs-toggle="collapse" data-bs-target="#orquestra" className="btn btn-color">Listar Todas Orquestras</button>&nbsp;&nbsp;
     {/* <button onClick={buscarPendentes()}type="button" data-bs-toggle="collapse" data-bs-target="#usuario" className="btn btn-secondary">Usuarios Pendentes</button>&nbsp;&nbsp; */}
 
-    <table id ="usuario" className="table collapse">
-  <tbody>
     
+    <table id ="usuario" className="table collapse">
+    <input  type="text" className="form-control input-pesqu" placeholder="Pesquise por nome ou email" aria-label="Recipient's username"
+     aria-describedby="button-addon2"  onChange={(e)=>{
+       setPesquisar(e.target.value);
+     }}/>
+  <tbody>
     <h3 className="titulo-list">Lista de todos os usuários</h3>
     <tr>
       <th scope="col">Nome</th>
@@ -89,7 +93,16 @@ function buscarOrquestras(){
   <tbody>
     {
 
-    usuarios.map( serv=>(
+    usuarios.filter(val=>{
+      if (pesquisar === ''){
+        return val;   
+      } else if (
+        val.nome.toLowerCase().includes(pesquisar.toLowerCase()) ||
+        val.email.toLowerCase().includes(pesquisar.toLowerCase())
+      )  {
+        return val
+      }
+    }).map( serv=>(
       <React.Fragment key={serv.codigo}>
     <tr>
       <td>{serv.nome}</td>
@@ -107,6 +120,10 @@ function buscarOrquestras(){
   </tbody>
 </table>
 <table id ="orquestra" className="table collapse">
+<input  type="text" className="form-control input-pesqu" placeholder="Pesquise por orquestra ou maestro" aria-label="Recipient's username"
+     aria-describedby="button-addon2"  onChange={(e)=>{
+       setPesquisar(e.target.value);
+     }}/>
   <tbody>
   <h3 className="titulo-list">Lista de todas as orquestras</h3>
     <tr>
@@ -119,7 +136,16 @@ function buscarOrquestras(){
   <tbody>
     {
 
-    orquestras.map(orq=>(
+    orquestras.filter(val=>{
+      if (pesquisar === ''){
+        return val;   
+      } else if (
+        val.nome.toLowerCase().includes(pesquisar.toLowerCase()) ||
+        val.codigoMaestro.nome.toLowerCase().includes(pesquisar.toLowerCase())
+      )  {
+        return val
+      }
+    }).map(orq=>(
       <React.Fragment key={orq.codigo}>
     <tr>
       <td>{orq.nome}</td>
