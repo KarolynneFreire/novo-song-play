@@ -5,7 +5,7 @@ import { Image } from "../../../components/Image";
 import { Title } from "../../../components/Title";
 import trebleClef from '../../../images/music-notes.png'
 import { useEffect, useState } from "react";
-import { Input } from '../../../components/Input'
+// import { Input } from '../../../components/Input'
 import { api } from "../../../services/api";
 import classes from './styles/styles.module.css'
 import { toast } from 'react-toastify'
@@ -27,22 +27,6 @@ export function SheetMusic() {
   useEffect(() => {
     document.title = 'Partituras'
   }, [])
-
-  // const handleSelectSheetMusic = (event) => {
-  //   if(!event.target.files) {
-  //     return
-  //   }
-
-  //   const selectedSheetMusic = Array.from(event.target.files)
-
-  //   setDocumento(selectedSheetMusic)
-
-  //   const selectedSheetMusicPreview = selectedSheetMusic.map(sheetMusic => {
-  //     return URL.createObjectURL(sheetMusic)
-  //   })
-
-  //   setPreviewSheetMusic(selectedSheetMusicPreview)
-  // }
 
   useEffect(() => {
     const listOrchestra = async () => {
@@ -84,47 +68,12 @@ export function SheetMusic() {
   const handleSheetMusic = async () => {
     
     try {
-
-      // const userData = {
-      //   nome,
-      //   compositor,
-      //   orquestra: {
-      //     codigo: Number(orquestra)
-      //   },
-      //   pdf
-      // }
       
       const userData = new FormData()
       
-      userData.append('nome', nome)
-
-      userData.append('compositor', compositor)
-
-      const orchestraCode = {
-        orquestra: {
-          codigo: Number(orquestra)
-        }
-      }
-      
-      userData.append('orquestra', orchestraCode.orquestra)
       userData.append('pdf', pdf)
-      
-      console.log(userData)
-      
-      // documento.forEach(documento => {
-      //   userData.append('documento', documento)
-      // })
-  
-      const headers = {
-        // 'headers': {
-        //   'content-type': 'application/json'
-        // }
-        headers: {
-          'content-type': 'multipart/form-data'
-        }
-      }
-  
-      const response = await api.post('/salvarPartitura', userData, headers)
+
+      const response = await api.post('/salvarPartitura', userData)
   
       if(response.status === 200) {
         return toast.success('Partitura salva com sucesso!')
@@ -132,7 +81,6 @@ export function SheetMusic() {
   
       console.log(response.data)
   
-      // throw new Error('A partitura não foi salva')
       
     } catch (error) {
       console.info(error.message)
@@ -190,7 +138,7 @@ export function SheetMusic() {
 
           <form method='post' encType="multipart/form-data" onSubmit={handleSubmit} className={`form-login ${classes.form_files}`}>
 
-            <Input 
+            {/* <Input 
               type='text'
               name='nome'
               className='input-login'
@@ -236,17 +184,9 @@ export function SheetMusic() {
                   )
                 }) }
               </select>
-            </div>
+            </div> */}
 
             <div className={classes.input_block}>
-              {/* <div className="sheetMusic-container">
-                { previewSheetMusic.map((sheetMusic, index) => {
-                  return (
-                    // estilizar
-                    <span key={index}>{ sheetMusic }</span>
-                  )
-                }) }
-              </div> */}
 
               <label htmlFor="file">Arquivo:</label>
               <label htmlFor="file" className={classes.inputFile}>
@@ -266,7 +206,7 @@ export function SheetMusic() {
             <Button 
               type='submit'
               className={`button-login isButtonDisabled ${classes.save_button}`}
-              disabled={ isDisabled }
+              // disabled={ isDisabled }
             >
               Salvar
             </Button>

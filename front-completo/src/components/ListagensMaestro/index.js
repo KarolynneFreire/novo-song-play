@@ -96,7 +96,7 @@ const ListagensMaestro = () => {
 
   async function excluirPartituras(codigo) {
     try {
-      const result = await api.post("/deletarUsuario/"+codigo)
+      const result = await api.post("/deletarPartitura/"+codigo)
       setAtualizar(result.data)
 
     } catch (error) {
