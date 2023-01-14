@@ -4,7 +4,6 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
 import br.ifpe.pp2.model.geral.ObjetoGeral;
@@ -13,9 +12,9 @@ import br.ifpe.pp2.model.geral.ObjetoGeral;
 public class Partitura extends ObjetoGeral {
 
 	@NotBlank(message = "Campo não pode ser vazio")
-	private String compositor;
-	@ManyToOne
-	private Orquestra orquestra;
+	private String tipo;
+//	@ManyToOne
+//	private Orquestra orquestra;
 	private int views;
 	@Lob
 	private byte[] documento;
@@ -24,21 +23,21 @@ public class Partitura extends ObjetoGeral {
 		super();
 	}
 
-	public String getCompositor() {
-		return compositor;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setCompositor(String compositor) {
-		this.compositor = compositor;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
-	public Orquestra getOrquestra() {
-		return orquestra;
-	}
-
-	public void setOrquestra(Orquestra orquestra) {
-		this.orquestra = orquestra;
-	}
+//	public Orquestra getOrquestra() {
+//		return orquestra;
+//	}
+//
+//	public void setOrquestra(Orquestra orquestra) {
+//		this.orquestra = orquestra;
+//	}
 
 	public int getViews() {
 		return views;
@@ -60,7 +59,7 @@ public class Partitura extends ObjetoGeral {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(compositor, documento, orquestra, views);
+		result = prime * result + Objects.hash(tipo, documento,  views);
 		return result;
 	}
 
@@ -73,8 +72,8 @@ public class Partitura extends ObjetoGeral {
 		if (getClass() != obj.getClass())
 			return false;
 		Partitura other = (Partitura) obj;
-		return Objects.equals(compositor, other.compositor) && Objects.equals(documento, other.documento)
-				&& Objects.equals(orquestra, other.orquestra) && views == other.views;
+		return Objects.equals(tipo, other.tipo) && Objects.equals(documento, other.documento)
+				 && views == other.views;
 	}
 
 	

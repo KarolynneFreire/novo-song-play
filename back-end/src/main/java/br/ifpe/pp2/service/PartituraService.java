@@ -24,16 +24,15 @@ public class PartituraService {
 
 	}
 
-	public List<Partitura> buscarPorCompositor(String compositor) {
-		return partituraDAO.findByCompositorContainingIgnoreCase(compositor);
-
+	public Long contagemPartitura() {
+		return partituraDAO.count();
 	}
 
 	public String salvarPartitura(Partitura partitura) {
 
 		partitura.setDataRegistro(new Date());
 		partitura.setDataUltimaAtualizacao(new Date());
-		partitura.setCompositor(partitura.getCompositor().toUpperCase());
+		partitura.setTipo(partitura.getTipo().toUpperCase());
 		partitura.setNome(partitura.getNome().toUpperCase());
 
 		this.partituraDAO.save(partitura);

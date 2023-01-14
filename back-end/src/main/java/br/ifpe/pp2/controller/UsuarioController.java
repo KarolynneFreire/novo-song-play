@@ -9,7 +9,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,22 +28,6 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 
-//	@PostMapping("/login")
-//	public Boolean login(@RequestBody Usuario usuario, HttpSession sassao) {
-//
-//		Boolean loginSucesso = false;
-//		Usuario usuarioEncontrado = this.usuarioService.login(usuario.getEmail(), usuario.getSenha());
-//
-//		if (usuarioEncontrado != null) {
-//			sassao.setAttribute("usuarioLogado", usuarioEncontrado);
-//			loginSucesso = true;
-//			return loginSucesso;
-//
-//		} else {
-//			return loginSucesso;
-//		}
-//	}
-//	
 	@PostMapping("/login")
 	public ResponseEntity<UsuarioDTO>login(@RequestBody Usuario usuario, HttpSession sassao) {
 
@@ -124,7 +107,7 @@ public class UsuarioController {
 	}
 
 	@GetMapping("/atualizarStatusUsuario/{id}")
-	@CrossOrigin("http://localhost:3000")
+//	@CrossOrigin("http://localhost:3000")
 	public void atualizarStatusUsuario(@PathVariable Integer id) {
 		
 		this.usuarioService.atualizarStatusUsuario(id);
@@ -146,6 +129,12 @@ public class UsuarioController {
 
 		this.usuarioService.deletarUsuarioPorId(id);
 		return "Registro deletado";
+	}
+	
+	@PostMapping("/alterarSenha")
+	public void alterarSenha(@RequestBody Usuario usuario) {
+		this.usuarioService.alterarSenha(usuario);
+
 	}
 
 	/*

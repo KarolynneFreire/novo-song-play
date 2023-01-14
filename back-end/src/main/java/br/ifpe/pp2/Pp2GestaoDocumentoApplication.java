@@ -25,7 +25,7 @@ public class Pp2GestaoDocumentoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("############################################################");
-		System.out.println("Criando usuario admin, login: admin@pp2.com, senha: 12345");
+		System.out.println("Criando usuario admin, login: admin@pp2.com, senha: 1234");
 		System.out.println("############################################################");
 		
 		this.usuarioService.dadosIniciais();

@@ -19,11 +19,14 @@ public class ObjetoGeral {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer codigo;	
+	
 	@NotBlank
 	private String nome;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private Date dataRegistro;
+	
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private Date dataUltimaAtualizacao;
 	

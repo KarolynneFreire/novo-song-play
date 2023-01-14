@@ -52,9 +52,7 @@ public class OrquestraService {
 		}
 
 		if (orquestraExite != null) {
-			if (this.orquestraDao.findByNome(orquestra.getNome().toUpperCase()) != null) {
-				throw new Exception("Ja existe Orquestra cadastrada com esse Nome.");
-			}
+
 			orquestra.setDataRegistro(orquestraExite.getDataRegistro());
 		}
 		orquestra.setDataUltimaAtualizacao(new Date());

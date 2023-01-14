@@ -150,7 +150,7 @@ public class UsuarioService {
 		admin.setAtivo(true);
 		admin.setCategoria(Categoria.ASSISTENTE);
 		admin.setNome("Admin");
-		admin.setSenha("12345");
+		admin.setSenha(PASSWORD);
 		admin.setEmail("admin@pp2.com");
 		admin.setDataRegistro(new Date());
 

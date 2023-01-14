@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -41,36 +41,44 @@ public class PartituraController {
 		listaPartituraDTO = listaPartitura.stream().map(PartituraDTO::new).collect(Collectors.toList());
 		return listaPartituraDTO;
 	}
-
-	@GetMapping("/buscarPorCompositor/{compositor}")
-	public List<PartituraDTO> bucarPorCompositor(@PathVariable String compositor) {
-
-		List<Partitura> listaPartitura = this.partituraService.buscarPorCompositor(compositor);
-		List<PartituraDTO> listaPartituraDTO = new ArrayList<PartituraDTO>();
-
-		listaPartituraDTO = listaPartitura.stream().map(PartituraDTO::new).collect(Collectors.toList());
-
-//		List<PartituraDTO> listaPartituraDTO = this.partituraService.buscarPorCompositor(compositor).stream()
-//				.map(PartituraDTO::new).collect(Collectors.toList());
-
-		return listaPartituraDTO;
-	}
 	
+	@GetMapping("/contagemPartitura")
+	public Long contagemPartitura() {
+
+		return this.partituraService.contagemPartitura();
+
+	}
+
+//	@GetMapping("/buscarPorCompositor/{compositor}")
+//	public List<PartituraDTO> bucarPorCompositor(@PathVariable String compositor) {
+//
+//		List<Partitura> listaPartitura = this.partituraService.buscarPorCompositor(compositor);
+//		List<PartituraDTO> listaPartituraDTO = new ArrayList<PartituraDTO>();
+//
+//		listaPartituraDTO = listaPartitura.stream().map(PartituraDTO::new).collect(Collectors.toList());
+//
+//		return listaPartituraDTO;
+//	}
+
 //	Upload
 	@PostMapping("/salvarPartitura")
-	public void salvarPartitura(@RequestBody Partitura partitura, MultipartFile pdf) {
-		
+	public String salvarPartitura(@RequestParam MultipartFile pdf) {
+
+		Partitura partitura = new Partitura();
+
 		try {
-			
+			partitura.setTipo(pdf.getName());
 			partitura.setDocumento(pdf.getBytes());
+			partitura.setNome(pdf.getOriginalFilename());
 			this.partituraService.salvarPartitura(partitura);
-			
+			return "Salvo";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// e.printStackTrace();
+			return e.getMessage();
 		}
 	}
-	
+
 //	//download
 //	@GetMapping(consumes = "/baixarPartitura")
 //	public File baixarPartitura() {
