@@ -11,13 +11,9 @@ import classes from './styles/styles.module.css'
 import { toast } from 'react-toastify'
 import { Worker } from '@react-pdf-viewer/core'
 import { Viewer } from '@react-pdf-viewer/core'
-// import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
-// import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import '@react-pdf-viewer/core/lib/styles/index.css'
 
 export function SheetMusic() {
-
-  // const defaultLayoutPluginInstance = defaultLayoutPlugin();
   
   const [pdf, setPdf] = useState([])
   const [pdfFile, setPdfFile] = useState(null)
@@ -165,7 +161,7 @@ export function SheetMusic() {
   
   return (
     <section className="container-body-login">
-      <Link to='/login' title='Login'>
+      <Link to='/maestro' title='Login'>
         <FaArrowLeft size={40} color='#131313' className="arrow-left" />
       </Link>
 

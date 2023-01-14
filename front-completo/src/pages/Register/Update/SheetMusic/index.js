@@ -165,7 +165,7 @@ export function SheetMusicUpdate() {
   
   return (
     <section className="container-body-login">
-      <Link to='/login' title='Login'>
+      <Link to='/maestro' title='Login'>
         <FaArrowLeft size={40} color='#131313' className="arrow-left" />
       </Link>
 

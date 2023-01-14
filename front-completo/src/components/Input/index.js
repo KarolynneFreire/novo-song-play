@@ -40,6 +40,7 @@ export function Input(props) {
           onChange={ props.onChange }
           maxLength={ props.maxLength }
           name={ props.name }
+          disabled={ props.disabled }
         />
       ) }
     </>
@@ -61,5 +62,6 @@ Input.propTypes = {
   onKeyDown: func,
   name: string,
   htmlFor: string,
-  label: string
+  label: string,
+  disabled: bool
 }

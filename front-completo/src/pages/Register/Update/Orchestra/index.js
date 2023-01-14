@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom'
 
 export function OrchestraUpdate() {
 
@@ -20,12 +21,19 @@ export function OrchestraUpdate() {
     document.title = 'Cadastre uma orquestra'
   }, [])
 
+  useEffect(() => {
+    return () => setNome('')
+  }, [])
+
   const [conductorName, setConductorsName] = useState('')
   const [data, setData] = useState([])
+
+  const { id } = useParams()
   
   const {
     nome,
     setNome,
+    setCodigo
   } = useContextApi()
 
   const navigate = useNavigate()
@@ -47,46 +55,29 @@ export function OrchestraUpdate() {
     listConductors()
   }, [])
 
-  const listOrchestra = async () => {
-    try {
-      const response = await api.get('/listarOrquestras')
+  useEffect(() => {
+    setNome(localStorage.getItem('name'))
+    setCodigo(localStorage.getItem('id'))
+  }, [])
 
-      return response.data
-    } catch (error) {
-      console.info(error.message)
-      console.error(error.name)
-    }
-  }
-  
-  const saveOrchestra = async () => {
+  const editOrchestraData = async () => {
     try {
       
       const dataUserInput = {
         nome,
+        codigo: Number(id),
         codigoMaestro: {
           codigo: Number(conductorName)
         }
       }
 
-      const orchestras = await listOrchestra()
-
-      for(const orchestra of orchestras) {
-        const { nome } = orchestra
-
-        if(nome === dataUserInput.nome.toUpperCase()) {
-          setNome('')
-          setConductorsName('')
-          return toast.info('Já exite uma orquestra com este nome.')
-        }
-      }
-      
       const response = await api.post('/inserirOrquestra', dataUserInput)
 
       if(response.data === 'Salvo') {
-        navigate('/')
+        navigate('/maestro')
         setNome('')
         setConductorsName('')
-        return toast.success('Orqustra criada com sucesso!')
+        return toast.success('Nome da orquestra editado com sucesso!')
       }
 
       setNome('')
@@ -95,15 +86,15 @@ export function OrchestraUpdate() {
       throw new Error('Ocorreu um erro. Por favor, tente novamente.')
 
     }catch(error) {
-      console.error(error.message)
-
+      console.error(error.name)
+      console.info(error.message)
     }
     
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    saveOrchestra()
+    await editOrchestraData()
   }
 
   const isDisabled = !nome || !conductorName

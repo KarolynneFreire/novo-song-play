@@ -8,12 +8,7 @@ const ListagensMaestro = () => {
 
   const { 
     user,
-    setCategoria,
-    setNome,
-    setCpf,
-    setEmail
-    // userData,
-    // setUserData
+    setNome
   } = useContextApi()
 
   const navigate = useNavigate()
@@ -29,12 +24,15 @@ const ListagensMaestro = () => {
     buscarUsuarios();
   },[]);
 
+  useEffect(() => {
+    return () => setNome('')
+  }, [])
+
   async function buscarUsuarios() {
     try {
       const result = await api.get('/listarUsuarios')
       SetUsuarios(result.data)
-      
-      // return result.data
+
     } catch (error) {
       console.error(error.name)
       console.info(error.message)
@@ -45,8 +43,7 @@ const ListagensMaestro = () => {
     try {
       const result = await api.get('/listarOrquestras')
       SetOrquestras(result.data)
-      
-      // return result.data
+
     } catch (error) {
       console.error(error.name)
       console.info(error.message)
@@ -57,8 +54,7 @@ const ListagensMaestro = () => {
     try {
       const result = await api.get('/listarPartitura')
       SetPartituras(result.data)
-      
-      // return result.data
+
     } catch (error) {
       console.error(error.name)
       console.info(error.message)
@@ -69,8 +65,7 @@ const ListagensMaestro = () => {
     try {
       const result = await api.get('/listarUsuariosPendentes')
       SetUsuarios(result.data)
-      
-      // return result.data
+
     } catch (error) {
       console.error(error.name)
       console.info(error.message)
@@ -81,43 +76,34 @@ const ListagensMaestro = () => {
     try {
       const result = await api.post("/deletarUsuario/"+id)
       setAtualizar(result.data)
-      
-      // return result.data
+
     } catch (error) {
       console.error(error.name)
       console.info(error.message)
     }
   }
 
-  async function excluirOrquestra(codigo) {
-    try {
-      const result = await api.post("/deletarUsuario/"+codigo)
-      setAtualizar(result.data)
+  // async function excluirOrquestra(codigo) {
+  //   try {
+  //     const result = await api.post("/deletarUsuario/"+codigo)
+  //     setAtualizar(result.data)
       
-      // return result.data
-    } catch (error) {
-      console.error(error.name)
-      console.info(error.message)
-    }
-  }
+  //   } catch (error) {
+  //     console.error(error.name)
+  //     console.info(error.message)
+  //   }
+  // }
 
   async function excluirPartituras(codigo) {
     try {
       const result = await api.post("/deletarUsuario/"+codigo)
       setAtualizar(result.data)
-      
-      // return result.data
+
     } catch (error) {
       console.error(error.name)
       console.info(error.message)
     }
   }
-
-  useEffect(() => {
-    return () => {
-
-    }
-  }, [])
 
   // function buscarUsuarios(){
   //   api.get("/listarUsuarios").then(result=>{
@@ -150,11 +136,11 @@ const ListagensMaestro = () => {
   // }
 
 
-  // function excluirOrquestra (codigo){
-  //   api.post("/deleteOrquestra/"+codigo).then(result=>{
-  //     setAtualizar(result);
-  //  });
-  // }
+  function excluirOrquestra (codigo){
+    api.post("/deleteOrquestra/"+codigo).then(result=>{
+      setAtualizar(result);
+   });
+  }
 
   // function excluirPartituras (codigo){
   //   api.post("/deletarPartitura/"+codigo).then(result=>{
@@ -162,16 +148,31 @@ const ListagensMaestro = () => {
   //   });
   // }
 
-  function editUsers(id) {
-    navigate(`/edit/user/${id}`)
+  function editUsers(data) {
+    const { codigo, email, categoria, cpf, nome } = data
+    
+    navigate(`/edit/user/${codigo}`)
+    localStorage.setItem('id', codigo)
+    localStorage.setItem('email', email)
+    localStorage.setItem('category', categoria)
+    localStorage.setItem('cpf', cpf)
+    localStorage.setItem('name', nome)
   }
 
-  function editOrchestra(id) {
-    navigate(`/edit/orchestra/${id}`)
+  function editOrchestra(data) {
+    console.log(data)
+    const { codigo, nome } = data
+    console.log(codigo)
+    
+    navigate(`/edit/orchestra/${codigo}`)
+    localStorage.setItem('id', codigo)
+    localStorage.setItem('name', nome)
   }
 
-  function editSheetMusic(id) {
-    navigate(`/edit/sheetMusic/${id}`)
+  function editSheetMusic(data) {
+    const { codigo } = data
+    
+    navigate(`/edit/sheetMusic/${codigo}`)
   }    
 
   return (
@@ -215,9 +216,9 @@ const ListagensMaestro = () => {
         <td>{serv.categoria}</td>
         <td >{serv.email}</td>
         <td>
-          <button onClick={()=> editUsers(serv.codigo)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp;
+          <button onClick={()=> editUsers(serv)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp;
           {/* <button onClick={()=>excluirUsuario(serv.codigo)} type="button" className="btn btn-color">Excluir</button>&nbsp;&nbsp; */}
-          { user.nome !== serv.nome ? (
+          { user.email !== serv.email ? (
             <button onClick={()=>excluirUsuario(serv.codigo)} type="button" className="btn btn-color">Excluir</button>
           ) : (
             null
@@ -262,7 +263,7 @@ const ListagensMaestro = () => {
       <td>{orq.nome}</td>
       <td>{orq.codigoMaestro.nome}</td>
       <td>
-      <button onClick={()=> editOrchestra(orq.codigo)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp;
+      <button onClick={()=> editOrchestra(orq)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp;
       <button onClick={()=>excluirOrquestra(orq.codigo)} type="button" className="btn btn-color">Excluir</button>&nbsp;&nbsp;
       </td>
     </tr>

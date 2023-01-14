@@ -29,6 +29,13 @@ export function Login() {
     isLoading
   } = useContextApi()
 
+  useEffect(() => {
+    return () => {
+      setEmail('')
+      setSenha('')
+    }
+  }, [])
+
   const isDisabled = !email || !senha
   
   return(

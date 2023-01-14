@@ -83,10 +83,10 @@ export function Orchestra() {
       const response = await api.post('/inserirOrquestra', dataUserInput)
 
       if(response.data === 'Salvo') {
-        navigate('/')
+        navigate('/maestro')
         setNome('')
         setConductorsName('')
-        return toast.success('Orqustra criada com sucesso!')
+        return toast.success('Orquestra criada com sucesso!')
       }
 
       setNome('')

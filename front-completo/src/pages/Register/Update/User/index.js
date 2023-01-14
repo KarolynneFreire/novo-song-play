@@ -9,7 +9,7 @@ import { Image } from '../../../../components/Image';
 import { Title } from '../../../../components/Title';
 import { Input } from '../../../../components/Input';
 import { api } from '../../../../services/api'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Loading } from '../../../../components/Loading'
 import { useParams } from 'react-router-dom'
 
@@ -38,14 +38,12 @@ export function UserUpdate() {
     isLoading, 
     setIsLoading,
     setCodigo,
-    userData,
-    setUserData
   } = useContextApi()
 
-  console.log(userData)
-
-  const [data, setData] = useState([])
-
+  useEffect(() => {
+    return () => setNome('')
+  }, [])
+  
   const isDisabled = !nome || 
                     !email || 
                     !categoria ||
@@ -84,37 +82,11 @@ export function UserUpdate() {
   }
 
   useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const { data } = await api.get(`/listarUsuarios`)
-        // setData(data)
-        
-        // let convert = data.reduce((obj, item) => ((obj[item.key] = item.value), obj), {})
-        // convert = Object.assign({data: data}, convert)   
-        // setData(convert)
-        // console.log(data)
-        
-        // setNome(Object.assign({}, data.nome))
-        
-        for(const editData of data) {
-          const { nome, cpf, categoria, email } = editData
-  
-          setNome(nome)
-          setCpf(cpf)
-          setCategoria(categoria)
-          setEmail(email)
-        }
-  
-        return data
-        
-      } catch (error) {
-        console.error(error.name)  
-        console.info(error.message)
-      }
-      
-    }
-
-    getUsers()
+    setCodigo(localStorage.getItem('id'))
+    setNome(localStorage.getItem('name'))
+    setCategoria(localStorage.getItem('category'))
+    setEmail(localStorage.getItem('email'))
+    setCpf(localStorage.getItem('cpf'))
   }, [])
 
   
@@ -230,6 +202,7 @@ export function UserUpdate() {
               label='CPF:'
               maxLength={14}
               value={cpf}
+              disabled={ true }
               onChange={handleChange}
             />
 
@@ -265,6 +238,7 @@ export function UserUpdate() {
               placeholder='E-mail'
               value={email}
               htmlFor='E-mail'
+              disabled={ true }
               label='E-mail:'
               onChange={(event) => setEmail(event.target.value)}
             />
