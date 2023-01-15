@@ -4,6 +4,19 @@
   cursor: pointer;
 }
 
+.form_container_sheetMusic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.form_container_sheetMusic h1 {
+  position: absolute;
+  top: 0;
+}
+
 .inputFile input {
   height: 2.6rem;
   background: #fff;
