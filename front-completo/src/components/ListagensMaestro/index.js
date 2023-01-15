@@ -276,23 +276,35 @@ const ListagensMaestro = () => {
 
 
 <table id ="partitura" className="table collapse">
+<input  type="text" className="form-control input-pesqu" placeholder="Pesquise por orquestra ou maestro" aria-label="Recipient's username"
+     aria-describedby="button-addon2"  onChange={(e)=>{
+       setPesquisar(e.target.value);
+     }}/>
   <tbody>
     <h3 className="titulo-list">Lista de todas as partituras</h3>
     <tr>
       <th scope="col">Nome</th>
-      <th scope="col">Compositor</th>
+      {/* <th scope="col">Compositor</th> */}
       <th scope="col">Opções</th>
     </tr>
     </tbody>
 
   <tbody>
     {
-
-    partituras.map(part=>(
+      partituras.filter(val=>{
+        if (pesquisar === ''){
+          return val;   
+        } else if (
+          val.nome.toLowerCase().includes(pesquisar.toLowerCase()) 
+          // val.codigoMaestro.nome.toLowerCase().includes(pesquisar.toLowerCase())
+        )  {
+          return val
+        }
+      }).map(part=>(
       <React.Fragment key={part.id}>
     <tr>
       <td>{part.nome}</td>
-      <td>{part.compositor}</td>
+      {/* <td>{part.compositor}</td> */}
       <td>
       <button onClick={()=> editSheetMusic(part.codigo)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp;
       <button onClick={()=>excluirPartituras(part.codigo)} type="button" className="btn btn-color">Excluir</button>&nbsp;&nbsp;
