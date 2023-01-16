@@ -4,6 +4,7 @@ import { useContextApi } from "../../context/hooks/useContextApi";
 import { useNavigate } from "react-router-dom";
 
 
+
 const ListagensMaestro = () => {
 
   const { 
@@ -11,14 +12,18 @@ const ListagensMaestro = () => {
     setNome
   } = useContextApi()
 
-  const navigate = useNavigate()
+  const navigatee = useNavigate()
   
   const [usuarios, SetUsuarios] = useState([]);
   const [orquestras, SetOrquestras] = useState([]);
   const [partituras, SetPartituras] = useState([]);
   // const [atualizar, setAtualizar] = useState([]);
   const [pesquisar, setPesquisar] = useState("");
-  
+  const navigate = useNavigate()
+
+    const Erro = () => {
+        navigatee('/erro')    
+    }
  
   useEffect(()=>{
     buscarUsuarios();
@@ -313,6 +318,7 @@ const ListagensMaestro = () => {
       <td>
       {/* <button onClick={()=> editSheetMusic(part.codigo)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp; */}
       <button onClick={()=>excluirPartituras(part.codigo)} type="button" className="btn btn-color">Excluir</button>&nbsp;&nbsp;
+      <button onClick={Erro} type="button" className="btn btn-color">Visualizar</button>&nbsp;&nbsp;
 
      
       </td>
