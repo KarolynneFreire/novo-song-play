@@ -28,8 +28,26 @@ export function SheetMusic() {
     let selectedFile = event.target.files[0]
     setPdfFileName(event.target.files[0].name)
     setPdf(event.target.files[0])
+
+    const numbersFiles = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    
+    for(const number of numbersFiles) {
+      if(event.target.files[0].name.includes(number)) {
+        toast.error('O nome do arquivo não pode conter números.')
+        setPdfFile(null)
+        return
+      }
+    }
+
+
+    if(!event.target.files[0].name.includes('.pdf')) {
+      setPdfFile(null)
+      toast.error('Não é possível salvar pastas.')
+      return
+    }
     
     if(selectedFile) {
+      
       if(selectedFile && allowedFiles.includes(selectedFile.type)) {
         let reader = new FileReader()
         reader.readAsDataURL(selectedFile)
@@ -37,7 +55,6 @@ export function SheetMusic() {
           setPdfFile(event.target.result)
         }
       }
-
     }else{
       console.log('Escolha um PDF.')
     }

@@ -16,7 +16,7 @@ const ListagensMaestro = () => {
   const [usuarios, SetUsuarios] = useState([]);
   const [orquestras, SetOrquestras] = useState([]);
   const [partituras, SetPartituras] = useState([]);
-  const [atualizar, setAtualizar] = useState([]);
+  // const [atualizar, setAtualizar] = useState([]);
   const [pesquisar, setPesquisar] = useState("");
   
  
@@ -61,43 +61,48 @@ const ListagensMaestro = () => {
     }
   }
 
-  async function buscarPendentes() {
-    try {
-      const result = await api.get('/listarUsuariosPendentes')
-      SetUsuarios(result.data)
-
-    } catch (error) {
-      console.error(error.name)
-      console.info(error.message)
-    }
-  }
-
-  async function excluirUsuario(id) {
-    try {
-      const result = await api.post("/deletarUsuario/"+id)
-      setAtualizar(result.data)
-
-    } catch (error) {
-      console.error(error.name)
-      console.info(error.message)
-    }
-  }
-
-  // async function excluirOrquestra(codigo) {
+  // async function buscarPendentes() {
   //   try {
-  //     const result = await api.post("/deletarUsuario/"+codigo)
-  //     setAtualizar(result.data)
-      
+  //     const result = await api.get('/listarUsuariosPendentes')
+  //     SetUsuarios(result.data)
+
   //   } catch (error) {
   //     console.error(error.name)
   //     console.info(error.message)
   //   }
   // }
 
+  async function excluirUsuario(id) {
+    try {
+      const result = await api.post("/deletarUsuario/"+id)
+      // setAtualizar(result.data)
+
+      return result.data
+    } catch (error) {
+      console.error(error.name)
+      console.info(error.message)
+    }
+  }
+
+  async function excluirOrquestra(codigo) {
+    try {
+      const result = await api.post("/deletarUsuario/"+codigo)
+      // setAtualizar(result.data)
+
+      return result.data
+      
+    } catch (error) {
+      console.error(error.name)
+      console.info(error.message)
+    }
+  }
+
   async function excluirPartituras(codigo) {
     try {
       const result = await api.post("/deletarPartitura/"+codigo)
-      setAtualizar(result.data)
+      // setAtualizar(result.data)
+
+      return result.data
 
     } catch (error) {
       console.error(error.name)
@@ -136,11 +141,11 @@ const ListagensMaestro = () => {
   // }
 
 
-  function excluirOrquestra (codigo){
-    api.post("/deleteOrquestra/"+codigo).then(result=>{
-      setAtualizar(result);
-   });
-  }
+  // function excluirOrquestra (codigo){
+  //   api.post("/deleteOrquestra/"+codigo).then(result=>{
+  //     setAtualizar(result);
+  //  });
+  // }
 
   // function excluirPartituras (codigo){
   //   api.post("/deletarPartitura/"+codigo).then(result=>{
@@ -169,11 +174,11 @@ const ListagensMaestro = () => {
     localStorage.setItem('name', nome)
   }
 
-  function editSheetMusic(data) {
-    const { codigo } = data
+  // function editSheetMusic(data) {
+  //   const { codigo } = data
     
-    navigate(`/edit/sheetMusic/${codigo}`)
-  }    
+  //   navigate(`/edit/sheetMusic/${codigo}`)
+  // }    
 
   return (
 
@@ -306,7 +311,7 @@ const ListagensMaestro = () => {
       <td>{part.nome}</td>
       {/* <td>{part.compositor}</td> */}
       <td>
-      <button onClick={()=> editSheetMusic(part.codigo)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp;
+      {/* <button onClick={()=> editSheetMusic(part.codigo)} type="button" className="btn btn-color">Editar</button>&nbsp;&nbsp; */}
       <button onClick={()=>excluirPartituras(part.codigo)} type="button" className="btn btn-color">Excluir</button>&nbsp;&nbsp;
 
      
