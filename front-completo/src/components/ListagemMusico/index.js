@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import { api } from '../../services/api';
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -11,6 +12,11 @@ const ListagemMusico = () => {
   const [atualizar, setAtualizar] = useState([]);
   const [pesquisar, setPesquisar] = useState("");
 
+  const navigate = useNavigate()
+
+    const Erro = () => {
+        navigate('/erro')    
+    }
  
  
   useEffect(()=>{
@@ -67,7 +73,7 @@ const ListagemMusico = () => {
       <td>{part.nome}</td>
       {/* <td>{part.compositor}</td> */}
       <td>
-      <button onClick={("")} type="button" className="btn btn-color">Baixar</button>&nbsp;&nbsp;
+      <button onClick={Erro} type="button" className="btn btn-color">Baixar</button>&nbsp;&nbsp;
 
      
       </td>

@@ -15,7 +15,9 @@ import Footer from '../components/Footer'
 import { UserUpdate } from '../pages/Register/Update/User'
 import { OrchestraUpdate } from '../pages/Register/Update/Orchestra'
 import { SheetMusicUpdate } from '../pages/Register/Update/SheetMusic'
+import Erro from '../pages/Erro'
 // import { ProtectedLayout } from '../components/ProtectedLayout'
+
 
 export function AllRoutes() {
 
@@ -34,6 +36,7 @@ export function AllRoutes() {
             <Route path='/login' element={ 
               <Login /> 
             } />
+            <Route path='/erro' element={ <Erro /> } />
             <Route path='/home' element={ <Home /> } />
             <Route path='/musico' element={ 
               <Musico />

@@ -86,7 +86,7 @@ const ListagensMaestro = () => {
 
   async function excluirOrquestra(codigo) {
     try {
-      const result = await api.post("/deletarUsuario/"+codigo)
+      const result = await api.post("/deleteOrquestra/"+codigo)
       // setAtualizar(result.data)
 
       return result.data

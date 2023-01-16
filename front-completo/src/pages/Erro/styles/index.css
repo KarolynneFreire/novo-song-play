@@ -1,0 +1,18 @@
+.centralizar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text-test{
+    text-align: center;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 600px){
+    .text-test{
+        font-size: 13px;
+  }
+
+}
+
