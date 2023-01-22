@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("/*")
+//@WebFilter("/*")
 public class FiltroUsuarioLogado implements Filter {
 
-	private String[] pathsLiberados = { "/acessoNegado", "/h2(.*)", "/api/login", "/api/logout","/api/inserirUsuario","/api/listarOrquestras","/api/listarUsuarios" };
-//	private String[] pathsLiberados = { "/(.*)" }; /*Libera todos os EndPoints*/
+//	private String[] pathsLiberados = { "/acessoNegado", "/h2(.*)", "/api/login", "/api/logout","/api/inserirUsuario","/api/listarOrquestras","/api/listarUsuarios" };
+	private String[] pathsLiberados = { "/(.*)" }; /*Libera todos os EndPoints*/
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

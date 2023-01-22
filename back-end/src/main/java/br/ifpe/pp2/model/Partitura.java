@@ -1,5 +1,6 @@
 package br.ifpe.pp2.model;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -13,8 +14,8 @@ public class Partitura extends ObjetoGeral {
 
 	@NotBlank(message = "Campo não pode ser vazio")
 	private String tipo;
-//	@ManyToOne
-//	private Orquestra orquestra;
+	private String compositor;
+
 	private int views;
 	@Lob
 	private byte[] documento;
@@ -31,13 +32,13 @@ public class Partitura extends ObjetoGeral {
 		this.tipo = tipo;
 	}
 
-//	public Orquestra getOrquestra() {
-//		return orquestra;
-//	}
-//
-//	public void setOrquestra(Orquestra orquestra) {
-//		this.orquestra = orquestra;
-//	}
+	public String getCompositor() {
+		return compositor;
+	}
+
+	public void setCompositor(String compositor) {
+		this.compositor = compositor;
+	}
 
 	public int getViews() {
 		return views;
@@ -59,7 +60,8 @@ public class Partitura extends ObjetoGeral {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(tipo, documento,  views);
+		result = prime * result + Arrays.hashCode(documento);
+		result = prime * result + Objects.hash(compositor, tipo, views);
 		return result;
 	}
 
@@ -72,10 +74,8 @@ public class Partitura extends ObjetoGeral {
 		if (getClass() != obj.getClass())
 			return false;
 		Partitura other = (Partitura) obj;
-		return Objects.equals(tipo, other.tipo) && Objects.equals(documento, other.documento)
-				 && views == other.views;
+		return Objects.equals(compositor, other.compositor) && Arrays.equals(documento, other.documento)
+				&& Objects.equals(tipo, other.tipo) && views == other.views;
 	}
-
-	
 
 }

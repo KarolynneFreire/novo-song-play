@@ -8,12 +8,10 @@ import br.ifpe.pp2.model.Partitura;
 
 public interface PartituraDAO extends JpaRepository<Partitura, Integer> {
 
-	public List<Partitura> findByTipoContainingIgnoreCase(String tipo);
+	public List<Partitura> findByCompositorContainingIgnoreCase(String compositor);
 
 	public List<Partitura> findByNomeContainingIgnoreCase(String nome);
 	
-	//public long count(); 
-
 	public Partitura findByCodigo(Integer codigo);
 
 }

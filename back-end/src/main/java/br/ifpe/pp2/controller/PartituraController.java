@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,26 +44,19 @@ public class PartituraController {
 	}
 	
 	@GetMapping("/contagemPartitura")
-	public Long contagemPartitura() {
+	public String contagemPartitura() {
+		
+		Long contagem = this.partituraService.contagemPartitura();
 
-		return this.partituraService.contagemPartitura();
+		return "Quantidade: " + contagem;
 
 	}
 
-//	@GetMapping("/buscarPorCompositor/{compositor}")
-//	public List<PartituraDTO> bucarPorCompositor(@PathVariable String compositor) {
-//
-//		List<Partitura> listaPartitura = this.partituraService.buscarPorCompositor(compositor);
-//		List<PartituraDTO> listaPartituraDTO = new ArrayList<PartituraDTO>();
-//
-//		listaPartituraDTO = listaPartitura.stream().map(PartituraDTO::new).collect(Collectors.toList());
-//
-//		return listaPartituraDTO;
-//	}
 
 //	Upload
 	@PostMapping("/salvarPartitura")
-	public String salvarPartitura(@RequestParam MultipartFile pdf) {
+	public String salvarPartitura(@RequestParam MultipartFile pdf, 
+								  @RequestParam("compositor")String compositor) {
 
 		Partitura partitura = new Partitura();
 
@@ -70,6 +64,7 @@ public class PartituraController {
 			partitura.setTipo(pdf.getName());
 			partitura.setDocumento(pdf.getBytes());
 			partitura.setNome(pdf.getOriginalFilename());
+			partitura.setCompositor(compositor.toUpperCase());
 			this.partituraService.salvarPartitura(partitura);
 			return "Salvo";
 		} catch (IOException e) {
@@ -79,13 +74,14 @@ public class PartituraController {
 		}
 	}
 
-//	//download
-//	@GetMapping(consumes = "/baixarPartitura")
-//	public File baixarPartitura() {
-//		
-//		return 
-//		
-//	}
+	//download
+	@GetMapping("/baixarPartitura/{codigo}")
+	public ResponseEntity<byte[]> baixarPartitura(@PathVariable Integer codigo) {
+		
+		return partituraService.buscarPorCodigo(codigo);
+		 
+		
+	}
 
 	@PostMapping("/deletarPartitura/{codigo}")
 	public String deletarPartitura(@PathVariable Integer codigo) {
