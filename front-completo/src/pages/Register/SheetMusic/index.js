@@ -93,6 +93,8 @@ export function SheetMusic() {
   
   const handleSubmit = async (event) => {
     event.preventDefault()
+    setPdfFileName('')
+    setPdfFile(null)
   
     await handleSheetMusic()
   }

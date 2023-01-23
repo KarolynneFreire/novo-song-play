@@ -26,13 +26,15 @@ export function Login() {
     setEmail,
     setSenha,
     handleLogin,
-    isLoading
+    isLoading,
+    setIsHiddenPassword
   } = useContextApi()
 
   useEffect(() => {
     return () => {
       setEmail('')
       setSenha('')
+      setIsHiddenPassword(false)
     }
   }, [])
 
